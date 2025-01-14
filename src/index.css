@@ -2,6 +2,8 @@
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
+  position: relative;
+  z-index: auto;
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
@@ -25,7 +27,6 @@ a:hover {
 body {
   margin: 0;
   display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
 }
@@ -66,3 +67,47 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+/* Default button styles */
+.responsive-button {
+  font-size: 14px; /* Default font size */
+  background-color: #121820; /* Blue background */
+  color: white; /* White text */
+  border: none;
+  border-radius: 8px; /* Rounded corners */
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+}
+
+.search {
+  margin-left: 5px;
+}
+
+/* Hover and disabled states */
+.responsive-button:hover {
+  background-color: #2563eb; /* Darker blue on hover */
+}
+
+.responsive-button:disabled {
+  background-color: #93c5fd; /* Light blue when disabled */
+  cursor: not-allowed;
+}
+
+/* Container styles for spacing */
+.recommendation-buttons {
+  display: flex;
+  flex-wrap: wrap; /* Allows buttons to wrap on smaller screens */
+  gap: 16px; /* Space between buttons */
+}
+
+/* Smaller screens: adjust button size */
+@media (max-width: 640px) {
+  .responsive-button {
+    padding: 8px 16px; /* Reduce padding */
+    font-size: 10px; /* Smaller font size */
+    margin-left: 0;
+    margin-top: 5px;
+  }
+}
+

@@ -3,15 +3,20 @@ import Scene from './components/Weather/Scene'
 
 function App() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-500 to-blue-700">
-      <div className="container mx-auto px-4 py-8">
-        <h1 className="text-4xl font-bold text-white mb-8 text-center">
+    <div className="w-screen h-screen relative bg-gradient-to-b from-blue-500 to-blue-700">
+      {/* Info and Title Layer */}
+      <div className="relative container mx-auto px-4 py-8 z-50">
+        <h1 style={{marginLeft: "10%", fontSize: "4vh", marginTop: "50px"}}>
           Weather but not boring
         </h1>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div style={{ position: "absolute", left: "2.5%", zIndex: 10, width: "40vw" }}>
           <Info />
-          <Scene />
         </div>
+      </div>
+
+      {/* Scene Layer */}
+      <div className="absolute inset-0 z-0" style={{ position: "absolute", right: 0, zIndex: 0 }}>
+        <Scene />
       </div>
     </div>
   )
