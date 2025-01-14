@@ -4,7 +4,7 @@ import { WEATHER_API_KEY, WEATHER_API_BASE_URL } from '../utils/constants'
 const getCoordinates = async (city) => {
   try {
     const response = await axios.get(
-      `http://api.openweathermap.org/geo/1.0/direct`,
+      `https://api.openweathermap.org/geo/1.0/direct`,
       {
         params: {
           q: city,
