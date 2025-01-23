@@ -17,12 +17,18 @@ Follow these steps to set up the project locally:
 1. **Clone the repo**:
    ```bash
    git clone https://github.com/JPZP2001/wbnb.git
+2. **Install dependencies**:
+   ```bash
+   npm install
+3. **Run locally
+   ```bash
+   npm run dev
 
 ## Redux Store
 - **weatherSlice**: handles the current city, loading status, and any errors, while allowing asynchronous fetching of weather information for a specified city.
 
 ## Purpose
-This app was built as my first React JS project, as well as to learn about state management on web applications.
+This app was built as my first React JS project to gain hands-on experience with building modern web applications. It also served as a learning opportunity to explore state management using Redux, asynchronous data fetching, and managing complex application state. Through this project, I aimed to improve my understanding of React's component-based architecture, best practices for building scalable and maintainable applications, and integrating third-party APIs.
 
 ## Acknowledgments
 - [React documentation](https://react.dev/learn)
