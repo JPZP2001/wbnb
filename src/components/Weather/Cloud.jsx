@@ -4,7 +4,6 @@ import { useFrame } from '@react-three/fiber'
 const Cloud = ({ position, scale, speed }) => {
   const group = useRef()
   
-  // Create individual cloud puff positions
   const puffs = useMemo(() => {
     return Array.from({ length: 8 }, (_, i) => ({
       position: [

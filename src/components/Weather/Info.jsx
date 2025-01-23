@@ -112,7 +112,6 @@ const Info = () => {
               </div>
             </div>
 
-            {/* Recommendation Buttons */}
             <div className="recommendation-buttons">
               <button
                 onClick={() => fetchRecommendations('clothing')}
@@ -139,7 +138,6 @@ const Info = () => {
               </div>
             )}
 
-            {/* Recommendations Display */}
             <RecommendationBox 
               content={clothingRecs} 
               title="Recommended Clothing" 

@@ -4,20 +4,19 @@ import Cloud from './Cloud'
 const CloudLayer = ({ weatherData }) => {
   const clouds = useMemo(() => {
     const cloudCover = weatherData?.clouds?.all || 0
-    const cloudCount = Math.floor((cloudCover / 100) * 15) + 5 // 5-20 clouds based on coverage
+    const cloudCount = Math.floor((cloudCover / 100) * 15) + 5
     
     return Array.from({ length: cloudCount }, (_, i) => ({
       position: [
-        (Math.random() - 0.5) * 50, // x
-        10 + Math.random() * 5,     // y
-        (Math.random() - 0.5) * 50  // z
+        (Math.random() - 0.5) * 50,
+        10 + Math.random() * 5,
+        (Math.random() - 0.5) * 50
       ],
       scale: Math.random() * 1 + 1,
       speed: Math.random() * 2 + 1
     }))
   }, [weatherData])
 
-  // Adjust cloud appearance based on weather
   const cloudMaterialProps = useMemo(() => {
     if (!weatherData) return { opacity: 0.8 }
     

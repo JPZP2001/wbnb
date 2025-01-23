@@ -4,7 +4,6 @@ import Scene from './components/Weather/Scene'
 function App() {
   return (
     <div className="w-screen h-screen relative bg-gradient-to-b from-blue-500 to-blue-700">
-      {/* Info and Title Layer */}
       <div className="relative container mx-auto px-4 py-8 z-50">
         <h1 style={{marginLeft: "10%", fontSize: "4vh", marginTop: "50px"}}>
           Weather but not boring
@@ -14,7 +13,6 @@ function App() {
         </div>
       </div>
 
-      {/* Scene Layer */}
       <div className="absolute inset-0 z-0" style={{ position: "absolute", right: 0, zIndex: 0 }}>
         <Scene />
       </div>

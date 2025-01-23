@@ -9,16 +9,14 @@ const City = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [isNight, setIsNight] = useState(false);
 
-  // Street lamp positions generator
   const generateStreetLamps = () => {
     const lamps = [];
     const gridSize = 4;
     const spacing = 3.5;
     
-    // Place lamps along grid intersections
     for (let x = -gridSize; x <= gridSize; x += 2) {
       for (let z = -gridSize; z <= gridSize; z += 2) {
-        if (Math.random() < 0.7) { // 70% chance to place a lamp
+        if (Math.random() < 0.7) {
           lamps.push({
             position: [x * spacing, 2.5, z * spacing],
             rotation: Math.random() * Math.PI * 2
@@ -103,7 +101,6 @@ const City = () => {
     setIsLoading(false);
   }, [weatherData, isNight]);
 
-  // Reusable geometries and materials
   const windowGeometry = useMemo(() => new THREE.BoxGeometry(0.12, 0.25, 0.05), []);
   const buildingMaterial = useMemo(() => new THREE.MeshStandardMaterial({
     roughness: 0.5,
@@ -116,15 +113,12 @@ const City = () => {
     canvas.height = 512;
     const ctx = canvas.getContext('2d');
     
-    // Draw asphalt texture
     ctx.fillStyle = isNight ? '#000000' : '#FAFAFA'
     ctx.fillRect(0, 0, 512, 512);
     
-    // Draw road lines
     ctx.strokeStyle = isNight ? '#000000' : '#E6E6E6'
     ctx.lineWidth = 10;
     
-    // Grid pattern
     for (let i = 0; i < 512; i += 64) {
       ctx.beginPath();
       ctx.moveTo(i, 0);
@@ -143,18 +137,15 @@ const City = () => {
   const StreetLamp = ({ position, rotation }) => {
     return (
       <group position={position} rotation={[0, rotation, 0]}>
-        {/* Lamp post */}
         <mesh castShadow geometry={streetLampGeometry}>
           <meshStandardMaterial color="#202020" />
         </mesh>
         
-        {/* Lamp head */}
         <mesh position={[0, 1.4, 0.2]} rotation={[Math.PI/2, 0, 0]}>
           <cylinderGeometry args={[0.2, 0.2, 0.4, 8]} />
           <meshStandardMaterial color="#FFFFFF" />
         </mesh>
         
-        {/* Light */}
         {isNight && (
           <pointLight
             position={[0, 1.4, 0.2]}
@@ -165,7 +156,6 @@ const City = () => {
           />
         )}
         
-        {/* Light bulb glow */}
         {isNight && (
           <mesh position={[0, 1.4, 0.2]}>
             <sphereGeometry args={[0.1, 16, 16]} />
@@ -213,10 +203,8 @@ const City = () => {
         const currentWidth = isInSetback ? building.topWidth : building.width;
         const currentDepth = isInSetback ? building.topDepth : building.depth;
 
-        // All four sides now have windows
         for (let w = 0; w < building.windowsPerFloor.width; w++) {
           const xOffset = (w - (building.windowsPerFloor.width - 1) / 2) * (currentWidth / building.windowsPerFloor.width);
-          // Front and back windows
           windowsList.push(
             { position: [xOffset, y, currentDepth / 2] },
             { position: [xOffset, y, -currentDepth / 2] }
@@ -225,7 +213,6 @@ const City = () => {
 
         for (let d = 0; d < building.windowsPerFloor.depth; d++) {
           const zOffset = (d - (building.windowsPerFloor.depth - 1) / 2) * (currentDepth / building.windowsPerFloor.depth);
-          // Side windows
           windowsList.push(
             { position: [currentWidth / 2, y, zOffset] },
             { position: [-currentWidth / 2, y, zOffset] }
@@ -238,13 +225,11 @@ const City = () => {
 
     return (
       <group position={building.position} rotation={[0, building.rotation, 0]}>
-        {/* Main building body */}
         <mesh castShadow receiveShadow>
           <boxGeometry args={[building.width, building.height, building.depth]} />
           <meshStandardMaterial {...buildingMaterial} color={building.baseColor} />
         </mesh>
 
-        {/* Building setback if present */}
         {building.hasSetback && (
           <mesh 
             castShadow 
@@ -257,7 +242,6 @@ const City = () => {
           </mesh>
         )}
 
-        {/* Decorative elements based on building style */}
         {building.style === 1 && (
           <mesh 
             castShadow 
@@ -295,7 +279,6 @@ const City = () => {
 
   return (
     <group>
-      {/* Ground with street texture */}
       <mesh 
         rotation={[-Math.PI / 2, 0, 0]} 
         position={[0, 0, 0]}
@@ -312,7 +295,6 @@ const City = () => {
         </meshStandardMaterial>
       </mesh>
       
-      {/* Buildings */}
       {buildings.map((building, index) => (
         <BuildingMesh 
           key={index} 
@@ -321,7 +303,6 @@ const City = () => {
         />
       ))}
       
-      {/* Street Lamps */}
       {streetLamps.map((lamp, index) => (
         <StreetLamp
           key={`lamp-${index}`}

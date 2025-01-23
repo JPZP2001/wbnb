@@ -1,4 +1,3 @@
-import { useRef, useMemo, useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { OrbitControls, PerspectiveCamera, Stars } from '@react-three/drei'
@@ -7,7 +6,6 @@ import CloudLayer from './CloudLayer'
 import City from './City'
 import WeatherEffects from './WeatherEffects'
 
-// Main Scene Component
 const Scene = () => {
   const { data: weatherData } = useSelector((state) => state.weather)
 

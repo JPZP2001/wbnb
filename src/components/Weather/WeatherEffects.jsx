@@ -1,7 +1,6 @@
 import { useRef, useMemo} from 'react'
 import { useFrame } from '@react-three/fiber'
 
-// Rain Particles Component
 const RainParticles = ({ count = 1000 }) => {
   const points = useRef()
   
@@ -49,7 +48,6 @@ const RainParticles = ({ count = 1000 }) => {
   )
 }
 
-// Snow Particles Component
 const SnowParticles = ({ count = 1000 }) => {
   const points = useRef()
   
@@ -102,9 +100,6 @@ const SnowParticles = ({ count = 1000 }) => {
   )
 }
 
-
-
-// Weather Effects Component
 const WeatherEffects = ({ weatherData }) => {
   if (!weatherData) return null
 
